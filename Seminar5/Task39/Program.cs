@@ -26,3 +26,4 @@ for (int j = 0; j < array.Length; j++)
 double r = max - min;
 Console.WriteLine(string.Join(", ", array));
 Console.Write($" Минимум={min}  Максимум={max}, Разница между ними {r}");
+
