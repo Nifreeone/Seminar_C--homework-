@@ -13,33 +13,29 @@ int l = Convert.ToInt32(Console.ReadLine());
 int[,,] matrix = FillMatrix(m, n, l);
 PrintMatrix(matrix);
 
-int[,,] FillMatrix(int rowsCount, int columns1Count, int columns2Count, int leftRange = 10,
-int rightRange = 100)
-
+int[,,] FillMatrix(int rowsCount, int columns1Count, int columns2Count, int leftRange = 10, int rightRange = 100)
 {
     int[,,] matrix = new int[rowsCount, columns1Count, columns2Count];
     Random rand = new Random();
-    int tmpnumber;
     int[] tmparray = new int[matrix.GetLength(0) * matrix.GetLength(1) * matrix.GetLength(2)];
-    
-    for (int l = 0; l < tmparray.GetLength(0); l++)
-{
+
     tmparray[l] = rand.Next(leftRange, rightRange);
-    tmpnumber = tmparray[l];
-    if (l >= 1)
+
+    for (int l = 0; l < tmparray.Length;)
+    {
+        int tmpnumber = rand.Next(leftRange, rightRange);
+        int j;
+        for (j = 0; j < l; j++)
         {
-            for (int t = 0; t < l; t++)
-            {
-                while (tmparray[l] == tmparray[t])
-                {
-                    tmparray[l] = rand.Next(leftRange, rightRange);
-                    t = 0;
-                    tmpnumber = tmparray[l];
-                }
-                tmpnumber = tmparray[l];
-            }
+            if (tmpnumber == tmparray[j])
+                break;
         }
-}
+        if (j == l)
+        {
+            tmparray[l] = tmpnumber;
+            l++;
+        }
+    }
     int cnt = 0;
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
@@ -50,11 +46,9 @@ int rightRange = 100)
                 matrix[i, j, c] = tmparray[cnt];
                 cnt++;
             }
-
         }
     }
-
-return matrix;
+    return matrix;
 }
 void PrintMatrix(int[,,] matrix)
 {

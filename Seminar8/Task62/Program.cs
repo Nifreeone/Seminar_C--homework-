@@ -8,7 +8,6 @@
 Console.Write("Введите количество строк и столбцов через Enter и задайте массив ");
 int m = Convert.ToInt32(Console.ReadLine());
 int n = Convert.ToInt32(Console.ReadLine());
-
 int k = 1;
 
 int[,] matrix = new int[m, n];
@@ -39,14 +38,12 @@ int d = 1;
 
 while (k < m * n)
 {
-
     while (matrix[c, d + 1] == 0)
     {
         matrix[c, d] = k;
         k++;
         d++;
     }
-
     while (matrix[c + 1, d] == 0)
     {
         matrix[c, d] = k;
@@ -85,7 +82,7 @@ void PrintMatrix(int[,] matrix)
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
             if (matrix[i, j] / 10 <= 0)
-                Console.Write($" {matrix[i, j]} ");
+                Console.Write($"{0}{matrix[i, j]} ");
 
             else Console.Write($"{matrix[i, j]} ");
         }
